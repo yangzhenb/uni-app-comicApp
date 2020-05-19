@@ -5,7 +5,7 @@
 			{{book.desc}}
 			<template v-slot:footer>
 				<view class="footer-box">
-					<uni-grid :column="3" :square="false" @change="chapterClick">
+					<uni-grid :column="3" :square="false" :showBorder="false" @change="chapterClick">
 						<uni-grid-item v-for="(chapter,index) in chapterList" :index="index">
 							<text class="text">{{chapter.chapterName}}</text>
 						</uni-grid-item>
@@ -58,5 +58,10 @@
 </script>
 
 <style>
-
+.text {
+	text-align: center;
+	border: 1px solid #5790e5;
+	margin: 5px;
+	border-radius: 5px
+}
 </style>

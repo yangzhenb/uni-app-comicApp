@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<uni-grid :column="1" :square="false" @change="bookClick">
+		<uni-grid :column="1" :square="false" :showBorder="false" @change="bookClick">
 			<uni-grid-item v-for="(book,index) in bookList" :index="index">
 				<!-- 图文卡片模式 -->
-				<uni-card :title="book.title" mode="style" :is-shadow="true" :thumbnail="book.cover" :note="book.desc">
-					
+				<uni-card :title="book.title" mode="style" :is-shadow="true" :thumbnail="book.cover">
+					{{book.desc}}
 				</uni-card>
 			</uni-grid-item>
 		</uni-grid>

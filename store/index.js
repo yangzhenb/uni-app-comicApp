@@ -14,11 +14,17 @@ const store = new Vuex.Store({
 		},
 		user(state, user) {
 			state.user = user
+			uni.setStorageSync('user', user)
 		}
 	},
 	getters: {
 		token: state => state.token,
-		user: state => state.user
+		user: state => {
+			if (0 == Object.keys(state.user).length) {
+				state.user = uni.getStorageSync('user')
+			}
+			return state.user
+		}
 	},
 	actions: {}
 })

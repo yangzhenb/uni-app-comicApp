@@ -2,7 +2,7 @@
 	"pages": [{
 		"path": "pages/comic/bookshelf",
 		"style": {
-			"navigationBarTitleText": "书架"
+			"navigationBarTitleText": "首页"
 		}
 	}, {
 		"path": "pages/comic/chapter",
@@ -39,7 +39,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#007AFF",
+		"navigationBarBackgroundColor": "#ff80ab",
 		"backgroundColor": "#FFFFFF"
 	},
 	"tabBar": {
@@ -51,7 +51,7 @@
 	        "pagePath": "pages/comic/bookshelf",
 	        "iconPath": "static/tabbar/index-0.png",
 	        "selectedIconPath": "static/tabbar/index-1.png",
-	        "text": "书架"
+	        "text": "首页"
 	    }, {
 	        "pagePath": "pages/user/center",
 	        "iconPath": "static/tabbar/center-0.png",

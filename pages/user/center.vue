@@ -7,19 +7,19 @@
 				<text class="go-login navigat-arrow" v-if="!login">&#xe65e;</text>
 			</view>
 		</view>
-		<view class="center-list">
+		<view class="center-list" v-if="login">
 			<view class="center-list-item border-bottom">
 				<text class="list-icon">&#xe60c;</text>
-				<text class="list-text">收藏图片</text>
+				<text class="list-text">浏览历史</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 			<view class="center-list-item">
 				<text class="list-icon">&#xe60d;</text>
-				<text class="list-text">收藏图集</text>
+				<text class="list-text">我的收藏</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
-		<view class="center-list">
+		<view class="center-list" v-if="login">
 			<view class="center-list-item border-bottom">
 				<text class="list-icon">&#xe60b;</text>
 				<text class="list-text">管理图片</text>
@@ -37,31 +37,54 @@
 				<text class="list-text">关于</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
-			<view class="center-list-item">
+			<view class="center-list-item" v-if="login" @click="logout">
 				<text class="list-icon">&#xe609;</text>
-				<text class="list-text">账号管理</text>
+				<text class="list-text">退出</text>
 				<text class="navigat-arrow">&#xe65e;</text>
 			</view>
 		</view>
+		<uni-popup ref="showtip" type="center" :mask-click="false" >
+			<view class="uni-tip">
+				<text class="uni-tip-title">退出登录？</text>
+				<!-- <text class="uni-tip-content">不会关闭弹窗。</text> -->
+				<view class="uni-tip-group-button">
+					<text class="uni-tip-button" @click="cancel(false)">取消</text>
+					<text class="uni-tip-button" @click="cancel(true)">确定</text>
+				</view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
+	import uniPopup from '@/components/uni-popup/uni-popup.vue'
 	export default {
+		components: {
+			uniPopup
+		},
 		data() {
 			return {
 				avatarUrl: '/static/logo.png',
 			}
 		},
-		computed:{
-			login(){
+		computed: {
+			login() {
 				return 0 != Object.keys(this.$store.getters.user).length
 			},
-			uerInfo(){
+			uerInfo() {
 				return this.$store.getters.user
 			}
 		},
 		methods: {
+			cancel(logout){
+				if(logout){
+					this.$store.commit('user', {})
+				}
+				this.$refs.showtip.close()
+			},
+			logout() {
+				this.$refs.showtip.open()
+			},
 			goLogin() {
 				if (!this.login) {
 					uni.navigateTo({
